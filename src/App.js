@@ -1,14 +1,25 @@
-import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import ListDevelopers from './components/ListDevelopers';
+import { getDevelopers } from './service';
+import GlobalStyle from './styled-components/GlobalStyle';
+import Wrapper from './styled-components/Wrapper';
 
 function App() {
-	const getRandomUsers = async () => {
-		axios.get('https://randomuser.me/api/?results=50').then(res => console.log(JSON.stringify(res.data.results)));
-	};
+	const [developers, setDevelopers] = useState([]);
+	useEffect(() => {
+		getDevelopers().then(res => setDevelopers([...res.data]));
+	}, []);
+	console.log(developers);
+
 	return (
-		<div className="App">
-			<button onClick={getRandomUsers}>get users</button>
-		</div>
+		<BrowserRouter>
+			<GlobalStyle />
+			<Wrapper>
+				<ListDevelopers developers={developers} />
+			</Wrapper>
+		</BrowserRouter>
 	);
 }
 

@@ -1,5 +1,5 @@
 {
-	"developers": [
+	"devs": [
 		{
 			"gender": "male",
 			"name": { "title": "Mr", "first": "Nixon", "last": "Lewis" },
@@ -21,11 +21,11 @@
 			"id": { "name": "", "value": null },
 			"picture": { "large": "https://randomuser.me/api/portraits/men/47.jpg", "medium": "https://randomuser.me/api/portraits/med/men/47.jpg", "thumbnail": "https://randomuser.me/api/portraits/thumb/men/47.jpg" },
 			"nat": "NZ",
-			"pricePH": "",
-			"technology": "",
-			"description": "",
-			"yoExperience": "",
-			"language": ""
+			"pricePH": "50",
+			"technology": "JavaScript",
+			"description": "There is something about that attention to details that has me going further...",
+			"yoExperience": "3",
+			"language": "Serbian"
 		},
 		{
 			"gender": "female",
@@ -1625,5 +1625,6 @@
 			"picture": { "large": "https://randomuser.me/api/portraits/men/86.jpg", "medium": "https://randomuser.me/api/portraits/med/men/86.jpg", "thumbnail": "https://randomuser.me/api/portraits/thumb/men/86.jpg" },
 			"nat": "FR"
 		}
-	]
+	],
+	"developers": []
 }
