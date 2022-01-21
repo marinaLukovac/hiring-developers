@@ -1,3 +1,24 @@
+## Download Repository from GitHub or run:
+
+## --
+
+## Local setup:
+
+--If you want entirely local start: (not obligatory step)
+\*\*Open service.js file in src folder
+comment out 3rd line of code && comment in 5th line of code
+save
+
+# RUN SERVER AND REACT APP
+
+# 1. in terminal type "npm install"
+
+# 2. after instalation open two terminal windows,
+
+# 3. in one window type "npm run server"
+
+# 4. in another one type "npm start"
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
