@@ -1,12 +1,10 @@
 {
   "files": {
-    "main.css": "/hiring-developers/static/css/main.31d6cfe0.css",
-    "main.js": "/hiring-developers/static/js/main.f8a3674b.js",
+    "main.js": "/hiring-developers/static/js/main.ab1bd9c0.js",
     "index.html": "/hiring-developers/index.html",
-    "main.f8a3674b.js.map": "/hiring-developers/static/js/main.f8a3674b.js.map"
+    "main.ab1bd9c0.js.map": "/hiring-developers/static/js/main.ab1bd9c0.js.map"
   },
   "entrypoints": [
-    "static/css/main.31d6cfe0.css",
-    "static/js/main.f8a3674b.js"
+    "static/js/main.ab1bd9c0.js"
   ]
 }
