@@ -1,19 +1,27 @@
-import DevStyled from '../styled-components/DevStyled';
-import Button from '../styled-components/Button';
-const Developer = ({ devInfo }) => {
-	const linkedInLink = `https://www.linkedin.com/in/${devInfo.name.first.toLowerCase()}-${devInfo.name.last.toLowerCase()}`;
+import Button from '../../styled-components/Button';
+import DevStyled from '../../styled-components/DevStyled';
+
+const SelectedDev = ({ devInfo, setSelectedDevs }) => {
+	const devId = devInfo.login.uuid;
+	const removeSelection = () => {
+		setSelectedDevs(prev => {
+			let temp = [...prev];
+			return temp.filter(el => devId !== el);
+		});
+	};
 	return (
 		<DevStyled>
-			<div
-				className="picture-frame"
-				style={{
-					backgroundImage: `url("${devInfo.picture.large}")`,
-				}}
-			></div>
-			<div className="delete-edit">
-				<Button>X</Button>
-				<Button>EDIT</Button>
-				<Button>HIRE</Button>
+			<div className="picture-checkbox">
+				<div
+					className="picture-frame"
+					style={{
+						backgroundImage: `url("${devInfo.picture.large}")`,
+					}}
+				></div>
+
+				<Button className="delete-btn" onClick={removeSelection}>
+					X
+				</Button>
 			</div>
 			<div className="contact-info">
 				<h3>
@@ -30,7 +38,6 @@ const Developer = ({ devInfo }) => {
 					{devInfo.yoExperience > 1 ? 'years' : 'year'}
 				</p>
 				<p>Language: {devInfo.language}</p>
-				<a href={linkedInLink}>LinkedIn</a>
 				<p>
 					Phone: <a href={`tel:${devInfo.phone}`}>{devInfo.phone}</a>
 				</p>
@@ -43,4 +50,4 @@ const Developer = ({ devInfo }) => {
 	);
 };
 
-export default Developer;
+export default SelectedDev;
