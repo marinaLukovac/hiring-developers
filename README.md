@@ -1,4 +1,10 @@
-## Download Repository from GitHub or run:
+## App is available at:
+
+https://marinalukovac.github.io/hiring-developers/
+
+## Download Repository from GitHub
+
+https://github.com/marinaLukovac/hiring-developers.git
 
 ## Local setup:
 
