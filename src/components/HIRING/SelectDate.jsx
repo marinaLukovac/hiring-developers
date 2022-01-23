@@ -11,8 +11,8 @@ const SelectDate = ({ setSelectedDate }) => {
 	useEffect(() => {
 		if (startDate && endDate) {
 			const dateIsOk = checkIfDateIsOk(startDate, endDate);
-			setMessage(dateIsOk);
-			if (dateIsOk) {
+			setMessage(dateIsOk[1]);
+			if (dateIsOk[0]) {
 				setSelectedDate({ start: startDate, end: endDate });
 			}
 		}
@@ -29,7 +29,7 @@ const SelectDate = ({ setSelectedDate }) => {
 					<label htmlFor="end-date">To:</label>
 					<input type="date" id="end-date" min={endMin} onChange={e => setEndDate(new Date(e.target.value).getTime())} />
 				</div>
-				{message && <article>{message}</article>}
+				{<article>{message}</article>}
 			</SelectDateStyled>
 		</>
 	);

@@ -1,18 +1,15 @@
 import { useEffect, useState } from 'react';
 import { getDevelopers } from './service';
-import GlobalStyle from './styled-components/GlobalStyle';
-import Welcome from './components/Welcome';
 import { checkDevAvailability } from './isDevAvailable';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import GlobalStyle from './styled-components/GlobalStyle';
+import Welcome from './components/Welcome';
 import Hiring from './components/HIRING/Hiring';
 import ManageDevelopers from './components/MANAGING/ManageDevelopers';
 import EditDeveloper from './components/MANAGING/EditDeveloper';
-// import MainHeader from './components/MainHeader';
-// import SelectDate from './components/HIRING/SelectDate';
-// import ListDevelopers from './components/HIRING/ListDevelopers';
-// import Confirm from './components/HIRING/Confirm';
 
 function App() {
+	//when adding login and credentials, access would be allowed based on procedure
 	const [procedure, setProcedure] = useState('');
 	const [developers, setDevelopers] = useState([]);
 	const [availableDevelopers, setAvailableDevelopers] = useState([]);
@@ -46,14 +43,14 @@ function App() {
 		<>
 			<GlobalStyle />
 			<Routes>
-				<Route path="/" element={<Navigate to="/hiring-developers" />} />
+				<Route path="/*" element={<Navigate to="/hiring-developers" />} />
 				<Route path="/hiring-developers" element={<Welcome setProcedure={setProcedure} />} />
 				<Route
 					path="/hire/*"
 					element={<Hiring procedure={procedure} setProcedure={setProcedure} availableDevelopers={availableDevelopers} developers={developers} setDevelopers={setDevelopers} selectedDate={selectedDate} setSelectedDate={setSelectedDate} selectedDevs={selectedDevs} setSelectedDevs={setSelectedDevs} />}
 				/>
-				<Route path="/manage/all" element={<ManageDevelopers developers={developers} />} />
-				<Route path="/manage/:id" element={<EditDeveloper developers={developers} setDevelopers={setDevelopers} />} />
+				<Route path="/manage" element={<ManageDevelopers developers={developers} setDevelopers={setDevelopers} procedure={procedure} />} />
+				<Route path="/manage/edit/:devId" element={<EditDeveloper developers={developers} setDevelopers={setDevelopers} />} />
 			</Routes>
 		</>
 	);

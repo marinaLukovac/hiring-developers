@@ -1,34 +1,41 @@
 import DevStyled from '../../styled-components/DevStyled';
-// import Button from '../../styled-components/Button';
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import Button from '../../styled-components/Button';
+import { useNavigate } from 'react-router-dom';
 
 const Developer = ({ devInfo, procedure, setSelectedDevs }) => {
+	if (setSelectedDevs) {
+	} else {
+		setSelectedDevs = () => {};
+	}
 	const [checked, setChecked] = useState(false);
 	const linkedInLink = `https://www.linkedin.com/in/${devInfo.name.first.toLowerCase()}-${devInfo.name.last.toLowerCase()}`;
 	const devId = devInfo.login.uuid;
+	const history = useNavigate();
 
-	let path = '';
-	if (procedure === 'hire-single') {
-		path = '/hire/confirm';
-	} else if (procedure === '/hire/select-developer') {
-		path = '';
-	} else if (procedure === 'manage') {
-		path = `/manage/${devId}`;
-	}
 	useEffect(() => {
+		if (procedure === 'manage') {
+			return;
+		}
 		if (checked) {
-			setSelectedDevs(prev => {
-				let temp = [...prev];
-				temp.push(devId);
-				return temp;
-			});
+			if (procedure === 'single') {
+				setSelectedDevs([devId]);
+			} else {
+				setSelectedDevs(prev => {
+					let temp = [...prev];
+					temp.push(devId);
+					return temp;
+				});
+			}
 		} else {
 			setSelectedDevs(prev => (prev.length === 0 ? [] : prev.filter(selectedId => selectedId !== devId)));
 		}
-	}, [checked, devId, setSelectedDevs]);
+	}, [checked, devId, setSelectedDevs, procedure]);
 	const selectDevHandler = e => {
 		setChecked(prev => !prev);
+	};
+	const redirectToEditPage = () => {
+		history(`edit/${devId}`);
 	};
 	return (
 		<DevStyled>
@@ -39,17 +46,15 @@ const Developer = ({ devInfo, procedure, setSelectedDevs }) => {
 						backgroundImage: `url("${devInfo.picture.large}")`,
 					}}
 				></div>
-				<Link className="links" to={path}></Link>
-				<div>
-					<label htmlFor="select-dev" />
-					<input type="checkbox" value={devInfo} checked={checked} id="select-dev" onChange={selectDevHandler} />
-				</div>
+
+				{procedure !== 'manage' && <input type={procedure === 'single' ? 'radio' : 'checkbox'} name="select-dev" id={devId} checked={checked} onChange={selectDevHandler} />}
+				{procedure === 'manage' && (
+					<Button className="delete-btn" onClick={redirectToEditPage}>
+						EDIT
+					</Button>
+				)}
 			</div>
-			{/* <div className="delete-edit">
-				<Button>X</Button>
-				<Button>EDIT</Button>
-				<Button>HIRE</Button>
-			</div> */}
+
 			<div className="contact-info">
 				<h3>
 					{devInfo.name.first} {devInfo.name.last}

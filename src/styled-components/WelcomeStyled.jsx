@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const WelcomeStyled = styled.article`
-	margin: 10vh auto;
-	height: 50vh;
+	margin: 15vh auto;
+	height: 60vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -11,8 +11,10 @@ const WelcomeStyled = styled.article`
 	& button {
 		width: 50rem;
 		height: 8vh;
-		@media all and (max-width: 540px) {
-			width: 96%;
+	}
+	@media all and (max-width: 540px) {
+		& button {
+			width: 94vw;
 		}
 	}
 	& h1 {

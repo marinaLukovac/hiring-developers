@@ -12,6 +12,10 @@ const ContactsPreview = styled.ul`
 	& .hire-btn {
 		margin-top: 2rem;
 	}
+	& .home-btn{
+		margin:  2% 0;
+	}
+	}
 	@media all and (max-width: 925px) {
 		justify-content: center;
 	}

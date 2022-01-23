@@ -4,9 +4,10 @@ const SelectDateStyled = styled.main`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	flex-wrap: wrap;
 	margin: 10vh auto;
 	width: 80vw;
-	@media all and (max-width: 420px) {
+	@media all and (max-width: 550px) {
 		flex-direction: column;
 		justify-content: space-evenly;
 		margin: 3vh auto;
@@ -42,6 +43,12 @@ const SelectDateStyled = styled.main`
 		display: inline-block;
 		padding: 1vh 2vh;
 		white-space: pre;
+	}
+	& article {
+		width: 96vw;
+		text-align: center;
+		margin-top: 20vh;
+		color: red;
 	}
 `;
 export default SelectDateStyled;

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { formatToBeautifulDate } from '../isDevAvailable';
-import Button from '../styled-components/Button';
-import MainHeaderStyled from '../styled-components/MainHeaderStyled';
+import { formatToBeautifulDate } from '../../isDevAvailable';
+import Button from '../../styled-components/Button';
+import MainHeaderStyled from '../../styled-components/MainHeaderStyled';
 
 const MainHeader = ({ availableDevelopers, selectedDate, selectedDevs }) => {
 	return (

@@ -53,8 +53,9 @@ const ContactPreview = styled.li`
 	& .delete-btn {
 		margin: 0;
 		padding: 0.1rem;
-		width: 3rem;
+		max-width: 30%;
 	}
+
 	& input[type='checkbox'] {
 		width: 1rem;
 		height: 1rem;

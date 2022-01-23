@@ -69,11 +69,11 @@ console.log(checkDevAvailability(nowValue, newContract6, hiringPeriods));
 const checkIfDateIsOk = (startDate, endDate) => {
 	const current = Date.now();
 	if (startDate >= endDate) {
-		return 'Hiring start should be before end!';
+		return [false, 'Hiring start should be before end!'];
 	} else if (current >= startDate) {
-		return 'Hiring time cannot be in the past';
+		return [false, 'Hiring time cannot be in the past'];
 	}
-	return true;
+	return [true, ''];
 };
 const checkDevAvailability = (now, contract, old) => {
 	//<current>,<object: start and end time>,<array of previous hiring times>
