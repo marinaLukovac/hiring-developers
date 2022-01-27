@@ -7327,6 +7327,10 @@
   ],
   "users": [
     {
+      "foreighnKey": "primeSof1",
+      "name": "Prime Software"
+    },
+    {
       "foreighnKey": "com1",
       "name": "Company1"
     },
@@ -7852,6 +7856,11 @@
           "starting": 1649030400000,
           "ending": 1649548800000,
           "userKey": "com7"
+        },
+        {
+          "starting": 1650931200000,
+          "ending": 1653523200000,
+          "userKey": "primeSof1"
         }
       ]
     },

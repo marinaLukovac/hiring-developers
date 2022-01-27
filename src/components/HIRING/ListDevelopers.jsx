@@ -3,11 +3,11 @@ import DevelopersPreview from '../../styled-components/DevelopersPreview';
 import Button from '../../styled-components/Button';
 import { Link } from 'react-router-dom';
 
-const ListDevelopers = ({ developers, setSelectedDevs, setDevelopers, procedure }) => {
+const ListDevelopers = ({ developers, setSelectedDevs, selectedDevs, setDevelopers, procedure }) => {
 	return (
 		<DevelopersPreview>
 			{developers.length ? (
-				developers.map(dev => <Developer key={dev.login.uuid} devInfo={dev} procedure={procedure} setSelectedDevs={setSelectedDevs} setDevelopers={setDevelopers} />)
+				developers.map(dev => <Developer key={dev.id} devInfo={dev} procedure={procedure} setSelectedDevs={setSelectedDevs} selectedDevs={selectedDevs} setDevelopers={setDevelopers} />)
 			) : (
 				<Link to="/hire/select-date">
 					<Button>FIRST SELECT WORK PERIOD</Button>

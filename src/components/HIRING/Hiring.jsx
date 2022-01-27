@@ -10,7 +10,7 @@ const Hiring = ({ procedure, setProcedure, developers, setDevelopers, availableD
 	useEffect(() => {
 		const temp = [];
 		for (let i = 0; i < availableDevelopers.length; i++) {
-			let dev = developers.find(dev => dev.login.uuid === availableDevelopers[i]);
+			let dev = developers.find(dev => dev.id === availableDevelopers[i]);
 			dev && temp.push(dev);
 		}
 		setDisplayDevs(temp);
@@ -18,11 +18,14 @@ const Hiring = ({ procedure, setProcedure, developers, setDevelopers, availableD
 
 	return (
 		<>
-			<MainHeader availableDevelopers={availableDevelopers} selectedDevs={selectedDevs} selectedDate={selectedDate} fixTheData={fixTheData} />
+			<MainHeader availableDevelopers={availableDevelopers} selectedDevs={selectedDevs} selectedDate={selectedDate} />
 			<Routes>
 				<Route path="select-date" element={<SelectDate setSelectedDate={setSelectedDate} />} />
-				<Route path="select-developer" element={<ListDevelopers developers={displayDevs} setSelectedDevs={setSelectedDevs} procedure={procedure} />} />
-				<Route path="confirm" element={<Confirm setSelectedDevs={setSelectedDevs} selectedDevs={selectedDevs} developers={displayDevs} setDisplayDevs={setDisplayDevs} setDevelopers={setDevelopers} setSelectedDate={setSelectedDate} displayDevs setProcedure={setProcedure} />} />
+				<Route path="select-developer" element={<ListDevelopers developers={displayDevs} setSelectedDevs={setSelectedDevs} selectedDevs={selectedDevs} procedure={procedure} />} />
+				<Route
+					path="confirm"
+					element={<Confirm setSelectedDevs={setSelectedDevs} selectedDevs={selectedDevs} developers={displayDevs} setDisplayDevs={setDisplayDevs} setDevelopers={setDevelopers} selectedDate={selectedDate} setSelectedDate={setSelectedDate} displayDevs setProcedure={setProcedure} />}
+				/>
 			</Routes>
 		</>
 	);

@@ -2,7 +2,7 @@ import Button from '../../styled-components/Button';
 import DevStyled from '../../styled-components/DevStyled';
 
 const SelectedDev = ({ devInfo, setSelectedDevs }) => {
-	const devId = devInfo.login.uuid;
+	const devId = devInfo.id;
 	const removeSelection = () => {
 		setSelectedDevs(prev => {
 			let temp = [...prev];
@@ -15,7 +15,7 @@ const SelectedDev = ({ devInfo, setSelectedDevs }) => {
 				<div
 					className="picture-frame"
 					style={{
-						backgroundImage: `url("${devInfo.picture.large}")`,
+						backgroundImage: `url("${devInfo.picture}")`,
 					}}
 				></div>
 
@@ -25,10 +25,10 @@ const SelectedDev = ({ devInfo, setSelectedDevs }) => {
 			</div>
 			<div className="contact-info">
 				<h3>
-					{devInfo.name.first} {devInfo.name.last}
+					{devInfo.firstName} {devInfo.lastName}
 				</h3>
 				{/* <div className="edit-box"> */}
-				<p>From: {devInfo.location.city}</p>
+				<p>From: {devInfo.location}</p>
 				<p>Tech: {devInfo.technology}</p>
 				<p>
 					Hourly rate: <span>${devInfo.pricePH}</span>

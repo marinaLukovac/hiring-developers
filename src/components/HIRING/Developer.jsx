@@ -4,22 +4,35 @@ import Button from '../../styled-components/Button';
 import { useNavigate } from 'react-router-dom';
 import { deleteDeveloper } from '../../service';
 
-const Developer = ({ devInfo, procedure, setSelectedDevs, setDevelopers }) => {
+const Developer = ({ devInfo, procedure, setSelectedDevs, selectedDevs, setDevelopers }) => {
 	if (setSelectedDevs) {
 	} else {
 		setSelectedDevs = () => {};
 	}
+	const history = useNavigate();
+
 	const [checked, setChecked] = useState(false);
 	const devId = devInfo.id;
-	const history = useNavigate();
 
 	useEffect(() => {
 		if (procedure === 'manage') {
 			return;
 		}
-		if (checked) {
-			if (procedure === 'single') {
+		if (!checked && selectedDevs.length === 0) return;
+		//single devs
+		if (procedure === 'radio') {
+			if (selectedDevs[0] === devId) {
+				if (checked) return;
+				setChecked(true);
+			} else {
+				checked && setChecked(false);
+			}
+			//multiple devs
+		} else {
+			if (selectedDevs.length === 0 && checked) {
 				setSelectedDevs([devId]);
+			} else if (!checked) {
+				setSelectedDevs(prev => prev.filter(selectedId => selectedId !== devId));
 			} else {
 				setSelectedDevs(prev => {
 					let temp = [...prev];
@@ -27,13 +40,17 @@ const Developer = ({ devInfo, procedure, setSelectedDevs, setDevelopers }) => {
 					return temp;
 				});
 			}
-		} else {
-			setSelectedDevs(prev => (prev.length === 0 ? [] : prev.filter(selectedId => selectedId !== devId)));
 		}
-	}, [checked, devId, setSelectedDevs, procedure]);
+	}, [checked, devId, selectedDevs, setSelectedDevs, procedure]);
+
 	const selectDevHandler = e => {
-		setChecked(prev => !prev);
+		if (procedure === 'radio') {
+			setSelectedDevs([devId]);
+		} else if ('checkbox') {
+			setChecked(prev => !prev);
+		}
 	};
+
 	const redirectToEditPage = () => {
 		history(`${devId}`);
 	};

@@ -13,7 +13,7 @@ const SelectDate = ({ setSelectedDate }) => {
 			const dateIsOk = checkIfDateIsOk(startDate, endDate);
 			setMessage(dateIsOk[1]);
 			if (dateIsOk[0]) {
-				setSelectedDate({ start: startDate, end: endDate });
+				setSelectedDate({ starting: startDate, ending: endDate });
 			}
 		}
 	}, [startDate, endDate, setMessage, setSelectedDate]);

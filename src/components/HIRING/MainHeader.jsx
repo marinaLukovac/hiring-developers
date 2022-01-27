@@ -3,13 +3,13 @@ import { formatToBeautifulDate } from '../../isDevAvailable';
 import Button from '../../styled-components/Button';
 import MainHeaderStyled from '../../styled-components/MainHeaderStyled';
 
-const MainHeader = ({ availableDevelopers, selectedDate, selectedDevs, fixTheData }) => {
+const MainHeader = ({ availableDevelopers, selectedDate, selectedDevs }) => {
 	return (
 		<MainHeaderStyled>
-			{selectedDate.start && (
+			{selectedDate.starting && (
 				<section>
 					<article>
-						{formatToBeautifulDate(selectedDate.start)} - {formatToBeautifulDate(selectedDate.end)}
+						{formatToBeautifulDate(selectedDate.starting)} - {formatToBeautifulDate(selectedDate.ending)}
 					</article>
 					<article>Available developers: {availableDevelopers.length}</article>
 					{selectedDevs.length && <article>Selected: {selectedDevs.length}</article>}
@@ -17,9 +17,6 @@ const MainHeader = ({ availableDevelopers, selectedDate, selectedDevs, fixTheDat
 			)}
 			<nav>
 				<ul>
-					<li>
-						<Button onClick={fixTheData}>FIX THE DATA</Button>
-					</li>
 					<li>
 						<NavLink to="/hiring-developers">
 							<Button>&#9750;</Button>

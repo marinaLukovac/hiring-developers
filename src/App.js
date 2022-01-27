@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getDevelopers, postDeveloper } from './service';
+import { getDevelopers } from './service';
 import { checkDevAvailability } from './isDevAvailable';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import GlobalStyle from './styled-components/GlobalStyle';
@@ -15,52 +15,26 @@ function App() {
 	const [developers, setDevelopers] = useState([]);
 	const [availableDevelopers, setAvailableDevelopers] = useState([]);
 	const [selectedDevs, setSelectedDevs] = useState([]);
-	const [selectedDate, setSelectedDate] = useState({ start: null, end: null });
-
+	const [selectedDate, setSelectedDate] = useState({ starting: null, ending: null });
 	useEffect(() => {
 		!developers.length && getDevelopers().then(res => setDevelopers([...res.data]));
 	}, [developers]);
 	useEffect(() => {
-		if (selectedDate.start) {
+		if (selectedDate.starting) {
 			setAvailableDevelopers([]);
 			const current = Date.now();
 			developers.forEach(developer => {
 				let devAvailable = checkDevAvailability(current, selectedDate, developer.hiringPeriods);
+				console.log(devAvailable);
 				devAvailable &&
 					setAvailableDevelopers(prev => {
 						let temp = [...prev];
-						temp.push(developer.login.uuid);
+						temp.push(developer.id);
 						return temp;
 					});
-				return;
 			});
 		}
 	}, [developers, selectedDate]);
-	const fixTheData = () => {
-		developers.forEach(dev => {
-			const hiringPeriods = [];
-			dev.hiringPeriods.forEach(period => {
-				hiringPeriods.push({ starting: period.starting, ending: period.ending, userKey: `com${Math.ceil(Math.random() * 11)}` });
-			});
-			const developer = {
-				firstName: dev.name.first || '',
-				lastName: dev.name.last || '',
-				email: dev.email || '',
-				phone: dev.phone || '',
-				location: dev.location.city || '',
-				picture: dev.picture.large || '',
-				pricePH: dev.pricePH || 50,
-				technology: dev.technology || '',
-				desc: '',
-				yoExperience: dev.yoExperience || 1,
-				language: dev.language,
-				linkedIn: '',
-				id: dev.login.uuid,
-				hiringPeriods: hiringPeriods,
-			};
-			postDeveloper(developer);
-		});
-	};
 
 	return (
 		<>
@@ -70,20 +44,7 @@ function App() {
 				<Route path="/hiring-developers" element={<Welcome setProcedure={setProcedure} />} />
 				<Route
 					path="/hire/*"
-					element={
-						<Hiring
-							procedure={procedure}
-							setProcedure={setProcedure}
-							availableDevelopers={availableDevelopers}
-							developers={developers}
-							setDevelopers={setDevelopers}
-							selectedDate={selectedDate}
-							setSelectedDate={setSelectedDate}
-							selectedDevs={selectedDevs}
-							setSelectedDevs={setSelectedDevs}
-							fixTheData={fixTheData}
-						/>
-					}
+					element={<Hiring procedure={procedure} setProcedure={setProcedure} availableDevelopers={availableDevelopers} developers={developers} setDevelopers={setDevelopers} selectedDate={selectedDate} setSelectedDate={setSelectedDate} selectedDevs={selectedDevs} setSelectedDevs={setSelectedDevs} />}
 				></Route>
 				<Route path="/manage/*" element={<ManageDevelopers developers={developers} setDevelopers={setDevelopers} procedure={procedure} />}>
 					<Route path="all" element={<AllDevelopers developers={developers} procedure={procedure} setDevelopers={setDevelopers} />} />

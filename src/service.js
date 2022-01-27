@@ -8,6 +8,7 @@ const getDevelopers = async () => await axios.get(`${server}/devFin`);
 const postDeveloper = ({ ...developer }) => axios.post(`${server}/devFin`, developer);
 
 const putDeveloper = (developer, id) => axios.put(`${server}/devFin/${id}`, developer);
+const hireDeveloper = (hiringPeriods, id) => axios.patch(`${server}/devFin/${id}`, { hiringPeriods: hiringPeriods });
 const deleteDeveloper = id => axios.delete(`${server}/devFin/${id}`);
 
-export { getDevelopers, postDeveloper, putDeveloper, deleteDeveloper };
+export { getDevelopers, postDeveloper, putDeveloper, hireDeveloper, deleteDeveloper };
