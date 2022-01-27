@@ -15,6 +15,7 @@ const Developer = ({ devInfo, procedure, setSelectedDevs, selectedDevs, setDevel
 	const devId = devInfo.id;
 
 	useEffect(() => {
+		//refactoring needed for the logic
 		if (procedure === 'manage') {
 			return;
 		}
@@ -29,21 +30,24 @@ const Developer = ({ devInfo, procedure, setSelectedDevs, selectedDevs, setDevel
 			}
 			//multiple devs
 		} else {
-			if (selectedDevs.length === 0 && checked) {
+			if (checked && selectedDevs.length === 0) {
 				setSelectedDevs([devId]);
-			} else if (!checked) {
-				setSelectedDevs(prev => prev.filter(selectedId => selectedId !== devId));
+				return;
+			}
+			let isSelected = selectedDevs.find(dev => dev === devId);
+			if (isSelected && checked) {
+				return;
+			}
+			if (!isSelected) {
+				if (!checked) return;
+				setSelectedDevs(prev => [...prev, devId]);
 			} else {
-				setSelectedDevs(prev => {
-					let temp = [...prev];
-					temp.push(devId);
-					return temp;
-				});
+				setSelectedDevs(prev => prev.filter(dev => dev !== devId));
 			}
 		}
 	}, [checked, devId, selectedDevs, setSelectedDevs, procedure]);
 
-	const selectDevHandler = e => {
+	const selectDevHandler = () => {
 		if (procedure === 'radio') {
 			setSelectedDevs([devId]);
 		} else if ('checkbox') {
