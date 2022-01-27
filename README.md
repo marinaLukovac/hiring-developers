@@ -49,18 +49,37 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
         ** Hire a team
         ** Manage developers
 
-    -
-
+    
+## Data structure:
 {
-"firstName": "Mark",
-"lastName": "Anthony",
-"location": "Sofia",
-"technology": "Java",
-"hourlyRate": 70,
-"experience": 1,
-"language": "Bulgarian",
-"linkedIn": "http",
-"phone": "",
-"email": "",
-"id": "uhfrgbyfgbyurgwy8731632167536713679410dshjf"
-}
+			"firstName": "Eleanor",
+			"lastName": "Graves",
+			"email": "eleanor.graves@example.com",
+			"phone": "013873 80457",
+			"location": "Newport",
+			"picture": "https://randomuser.me/api/portraits/women/84.jpg",
+			"pricePH": 50,
+			"technology": "",
+			"desc": "",
+			"yoExperience": 1,
+			"language": "Bulgarian",
+			"linkedIn": "",
+			"id": "fe3ed97d-9dd1-4a4d-9eda-a3de46609018",
+			"hiringPeriods": [
+				{
+					"starting": 1643414400000,
+					"ending": 1643846400000,
+					"userKey": "com5"
+				},
+				{
+					"starting": 1644537600000,
+					"ending": 1645142400000,
+					"userKey": "com6"
+				},
+				{
+					"starting": 1649030400000,
+					"ending": 1649548800000,
+					"userKey": "com11"
+				}
+              ]
+ }
