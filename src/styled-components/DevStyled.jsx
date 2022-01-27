@@ -49,7 +49,13 @@ const ContactPreview = styled.li`
 		justify-content: space-between;
 		align-items: top;
 	}
-
+	& .btn-box {
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+		align-items: end;
+		max-width: 70%;
+	}
 	& .delete-btn {
 		margin: 0;
 		padding: 0.1rem;

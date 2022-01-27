@@ -97,5 +97,4 @@ arr.push(Date.UTC('2022', '03', '28'));
 arr.push(Date.UTC('2022', '03', '29'));
 arr.push(Date.UTC('2022', '03', '30'));
 
-// console.log(JSON.stringify(arr));
 console.log(new Date().toISOString().slice(0, 10));

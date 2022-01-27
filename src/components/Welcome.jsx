@@ -7,12 +7,12 @@ const Welcome = ({ setProcedure }) => {
 		<WelcomeStyled>
 			<h1>PRIME HIRING</h1>
 			<Link to="/hire/select-date">
-				<Button onClick={() => setProcedure('single')}>HIRE A DEVELOPER NOW</Button>
+				<Button onClick={() => setProcedure('radio')}>HIRE A DEVELOPER NOW</Button>
 			</Link>
 			<Link to="/hire/select-date">
-				<Button onClick={() => setProcedure('team')}>HIRE A TEAM</Button>
+				<Button onClick={() => setProcedure('checkbox')}>HIRE A TEAM</Button>
 			</Link>
-			<Link to="/manage">
+			<Link to="/manage/all">
 				<Button onClick={() => setProcedure('manage')}>MANAGE DEVELOPERS</Button>
 			</Link>
 		</WelcomeStyled>

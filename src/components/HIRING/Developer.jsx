@@ -2,15 +2,15 @@ import DevStyled from '../../styled-components/DevStyled';
 import { useEffect, useState } from 'react';
 import Button from '../../styled-components/Button';
 import { useNavigate } from 'react-router-dom';
+import { deleteDeveloper } from '../../service';
 
-const Developer = ({ devInfo, procedure, setSelectedDevs }) => {
+const Developer = ({ devInfo, procedure, setSelectedDevs, setDevelopers }) => {
 	if (setSelectedDevs) {
 	} else {
 		setSelectedDevs = () => {};
 	}
 	const [checked, setChecked] = useState(false);
-	const linkedInLink = `https://www.linkedin.com/in/${devInfo.name.first.toLowerCase()}-${devInfo.name.last.toLowerCase()}`;
-	const devId = devInfo.login.uuid;
+	const devId = devInfo.id;
 	const history = useNavigate();
 
 	useEffect(() => {
@@ -35,7 +35,16 @@ const Developer = ({ devInfo, procedure, setSelectedDevs }) => {
 		setChecked(prev => !prev);
 	};
 	const redirectToEditPage = () => {
-		history(`edit/${devId}`);
+		history(`${devId}`);
+	};
+	const delDev = async () => {
+		const response = await deleteDeveloper(devInfo.id);
+		if (response.statusText === 'OK') {
+			console.log('deleted');
+		} else {
+			console.log('something went wrong');
+		}
+		setDevelopers([]);
 	};
 	return (
 		<DevStyled>
@@ -43,24 +52,29 @@ const Developer = ({ devInfo, procedure, setSelectedDevs }) => {
 				<div
 					className="picture-frame"
 					style={{
-						backgroundImage: `url("${devInfo.picture.large}")`,
+						backgroundImage: `url("${devInfo.picture}")`,
 					}}
 				></div>
 
-				{procedure !== 'manage' && <input type={procedure === 'single' ? 'radio' : 'checkbox'} name="select-dev" id={devId} checked={checked} onChange={selectDevHandler} />}
+				{procedure && procedure !== 'manage' && <input type={procedure} name="select-dev" id={devId} checked={checked} onChange={selectDevHandler} />}
 				{procedure === 'manage' && (
-					<Button className="delete-btn" onClick={redirectToEditPage}>
-						EDIT
-					</Button>
+					<div className="btn-box">
+						<Button className="delete-btn" onClick={redirectToEditPage}>
+							EDIT
+						</Button>
+						<Button className="delete-btn" onClick={delDev}>
+							X
+						</Button>
+					</div>
 				)}
 			</div>
 
 			<div className="contact-info">
 				<h3>
-					{devInfo.name.first} {devInfo.name.last}
+					{devInfo.firstName} {devInfo.lastName}
 				</h3>
 				{/* <div className="edit-box"> */}
-				<p>From: {devInfo.location.city}</p>
+				<p>From: {devInfo.location}</p>
 				<p>Tech: {devInfo.technology}</p>
 				<p>
 					Hourly rate: <span>${devInfo.pricePH}</span>
@@ -70,7 +84,7 @@ const Developer = ({ devInfo, procedure, setSelectedDevs }) => {
 					{devInfo.yoExperience > 1 ? 'years' : 'year'}
 				</p>
 				<p>Language: {devInfo.language}</p>
-				<a href={linkedInLink}>LinkedIn</a>
+				<a href={devId.linkedIn}>LinkedIn</a>
 				<p>
 					Phone: <a href={`tel:${devInfo.phone}`}>{devInfo.phone}</a>
 				</p>

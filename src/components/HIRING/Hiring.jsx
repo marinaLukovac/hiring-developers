@@ -5,7 +5,7 @@ import SelectDate from './SelectDate';
 import ListDevelopers from './ListDevelopers';
 import Confirm from './Confirm';
 
-const Hiring = ({ procedure, setProcedure, developers, setDevelopers, availableDevelopers, setSelectedDate, selectedDevs, setSelectedDevs, selectedDate }) => {
+const Hiring = ({ procedure, setProcedure, developers, setDevelopers, availableDevelopers, setSelectedDate, selectedDevs, setSelectedDevs, selectedDate, fixTheData }) => {
 	const [displayDevs, setDisplayDevs] = useState([]);
 	useEffect(() => {
 		const temp = [];
@@ -18,7 +18,7 @@ const Hiring = ({ procedure, setProcedure, developers, setDevelopers, availableD
 
 	return (
 		<>
-			<MainHeader availableDevelopers={availableDevelopers} selectedDevs={selectedDevs} selectedDate={selectedDate} />
+			<MainHeader availableDevelopers={availableDevelopers} selectedDevs={selectedDevs} selectedDate={selectedDate} fixTheData={fixTheData} />
 			<Routes>
 				<Route path="select-date" element={<SelectDate setSelectedDate={setSelectedDate} />} />
 				<Route path="select-developer" element={<ListDevelopers developers={displayDevs} setSelectedDevs={setSelectedDevs} procedure={procedure} />} />

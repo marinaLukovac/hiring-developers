@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 const EditForm = styled.form`
-	height: 60vh;
 	width: 90vw;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	padding: 1.5vh;
-	margin: 23vh auto;
-	& .input-field {
+	margin: 10vh auto;
+	& .input-field,
+	select {
 		padding: 2vh;
 		border-radius: 0.4vh;
 		border: 0.2vh solid #808080;

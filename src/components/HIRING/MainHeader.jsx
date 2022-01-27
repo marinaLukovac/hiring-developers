@@ -3,7 +3,7 @@ import { formatToBeautifulDate } from '../../isDevAvailable';
 import Button from '../../styled-components/Button';
 import MainHeaderStyled from '../../styled-components/MainHeaderStyled';
 
-const MainHeader = ({ availableDevelopers, selectedDate, selectedDevs }) => {
+const MainHeader = ({ availableDevelopers, selectedDate, selectedDevs, fixTheData }) => {
 	return (
 		<MainHeaderStyled>
 			{selectedDate.start && (
@@ -17,6 +17,9 @@ const MainHeader = ({ availableDevelopers, selectedDate, selectedDevs }) => {
 			)}
 			<nav>
 				<ul>
+					<li>
+						<Button onClick={fixTheData}>FIX THE DATA</Button>
+					</li>
 					<li>
 						<NavLink to="/hiring-developers">
 							<Button>&#9750;</Button>

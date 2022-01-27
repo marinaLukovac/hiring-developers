@@ -17,7 +17,7 @@ const SelectDate = ({ setSelectedDate }) => {
 			}
 		}
 	}, [startDate, endDate, setMessage, setSelectedDate]);
-	console.log(message);
+
 	return (
 		<>
 			<SelectDateStyled>
