@@ -5,22 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { deleteDeveloper } from '../../service';
 
 const Developer = ({ devInfo, procedure, setSelectedDevs, selectedDevs, setDevelopers }) => {
-	if (setSelectedDevs) {
-	} else {
-		setSelectedDevs = () => {};
-	}
-	const history = useNavigate();
-
 	const [checked, setChecked] = useState(false);
+	const history = useNavigate();
 	const devId = devInfo.id;
 
 	useEffect(() => {
-		//refactoring needed for the logic
-		if (procedure === 'manage') {
-			return;
-		}
+		if (procedure === 'manage') return;
 		if (!checked && selectedDevs.length === 0) return;
-		//single devs
 		if (procedure === 'radio') {
 			if (selectedDevs[0] === devId) {
 				if (checked) return;
@@ -28,16 +19,13 @@ const Developer = ({ devInfo, procedure, setSelectedDevs, selectedDevs, setDevel
 			} else {
 				checked && setChecked(false);
 			}
-			//multiple devs
 		} else {
 			if (checked && selectedDevs.length === 0) {
 				setSelectedDevs([devId]);
 				return;
 			}
 			let isSelected = selectedDevs.find(dev => dev === devId);
-			if (isSelected && checked) {
-				return;
-			}
+			if (isSelected && checked) return;
 			if (!isSelected) {
 				if (!checked) return;
 				setSelectedDevs(prev => [...prev, devId]);
@@ -54,11 +42,9 @@ const Developer = ({ devInfo, procedure, setSelectedDevs, selectedDevs, setDevel
 			setChecked(prev => !prev);
 		}
 	};
-
 	const redirectToEditPage = () => {
 		history(`${devId}`);
 	};
-
 	const delDev = async () => {
 		const response = await deleteDeveloper(devInfo.id);
 		if (response.statusText === 'OK') {

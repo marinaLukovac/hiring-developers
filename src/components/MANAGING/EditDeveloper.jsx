@@ -123,7 +123,7 @@ const EditDeveloper = ({ developers, setDevelopers }) => {
 				<select
 					name="tech"
 					id="tech-select"
-					value={params.devId === 'new' ? '' : technology}
+					value={technology}
 					onChange={e => {
 						setTechnology(e.target.value);
 					}}

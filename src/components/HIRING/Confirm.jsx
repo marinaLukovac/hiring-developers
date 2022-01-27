@@ -14,20 +14,17 @@ const Confirm = ({ setSelectedDevs, developers, selectedDevs, selectedDate, setS
 	const hiringProcess = () => {
 		//default user is Prime Softvare: userKey: primeSof1
 		const userKey = 'primeSof1';
+		let response = true;
 		displayed.forEach(dev => {
 			const hiringPeriods = [...dev.hiringPeriods, { starting: selectedDate.starting, ending: selectedDate.ending, userKey: userKey }];
-			const response = hireDeveloper(hiringPeriods, dev.id);
+			response = hireDeveloper(hiringPeriods, dev.id);
 			//check about catching promise
-			response ? history('/success/hired') : history('/success/false');
 		});
-
 		setSelectedDevs([]);
 		setSelectedDate({ starting: null, ending: null });
 		setDisplayDevs([]);
 		setDevelopers([]);
-		//Add edit(patch or put) request for the displayed... has to include selected date and uuid of the user who is currently hiring
-		//then send get request to fetch new data...
-		//return to starting page
+		response ? history('/success/hired') : history('/success/false');
 	};
 	return (
 		<DevelopersPreview>

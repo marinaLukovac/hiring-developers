@@ -3,7 +3,7 @@ import { formatToBeautifulDate } from '../../isDevAvailable';
 import Button from '../../styled-components/Button';
 import MainHeaderStyled from '../../styled-components/MainHeaderStyled';
 
-const MainHeader = ({ availableDevelopers, selectedDate, selectedDevs }) => {
+const MainHeader = ({ countAvailableDevs, selectedDate, countSelectedDevs }) => {
 	return (
 		<MainHeaderStyled>
 			{selectedDate.starting && (
@@ -11,8 +11,8 @@ const MainHeader = ({ availableDevelopers, selectedDate, selectedDevs }) => {
 					<article>
 						{formatToBeautifulDate(selectedDate.starting)} - {formatToBeautifulDate(selectedDate.ending)}
 					</article>
-					<article>Available developers: {availableDevelopers.length}</article>
-					{selectedDevs.length && <article>Selected: {selectedDevs.length}</article>}
+					<article>Available developers: {countAvailableDevs}</article>
+					{countSelectedDevs && <article>Selected: {countSelectedDevs}</article>}
 				</section>
 			)}
 			<nav>
