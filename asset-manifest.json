@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/hiring-developers/static/js/main.2e77fc4d.js",
+    "main.js": "/hiring-developers/static/js/main.1f9ff4f5.js",
     "index.html": "/hiring-developers/index.html",
-    "main.2e77fc4d.js.map": "/hiring-developers/static/js/main.2e77fc4d.js.map"
+    "main.1f9ff4f5.js.map": "/hiring-developers/static/js/main.1f9ff4f5.js.map"
   },
   "entrypoints": [
-    "static/js/main.2e77fc4d.js"
+    "static/js/main.1f9ff4f5.js"
   ]
 }
