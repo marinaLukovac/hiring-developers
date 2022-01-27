@@ -21,7 +21,7 @@ const Hiring = ({ procedure, setProcedure, developers, setDevelopers, availableD
 			<MainHeader availableDevelopers={availableDevelopers} selectedDevs={selectedDevs} selectedDate={selectedDate} />
 			<Routes>
 				<Route path="select-date" element={<SelectDate setSelectedDate={setSelectedDate} />} />
-				<Route path="select-developer" element={<ListDevelopers developers={displayDevs} setSelectedDevs={setSelectedDevs} selectedDevs={selectedDevs} procedure={procedure} />} />
+				<Route path="select-developer" element={<ListDevelopers developers={displayDevs} setDevelopers={setDevelopers} setSelectedDevs={setSelectedDevs} selectedDevs={selectedDevs} procedure={procedure} />} />
 				<Route
 					path="confirm"
 					element={<Confirm setSelectedDevs={setSelectedDevs} selectedDevs={selectedDevs} developers={displayDevs} setDisplayDevs={setDisplayDevs} setDevelopers={setDevelopers} selectedDate={selectedDate} setSelectedDate={setSelectedDate} displayDevs setProcedure={setProcedure} />}

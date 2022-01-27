@@ -8,6 +8,7 @@ import Hiring from './components/HIRING/Hiring';
 import ManageDevelopers from './components/MANAGING/ManageDevelopers';
 import EditDeveloper from './components/MANAGING/EditDeveloper';
 import AllDevelopers from './components/MANAGING/AllDevelopers';
+import SuccessPage from './components/SuceessPage';
 
 function App() {
 	//when adding login and credentials, access would be allowed based on procedure
@@ -16,16 +17,14 @@ function App() {
 	const [availableDevelopers, setAvailableDevelopers] = useState([]);
 	const [selectedDevs, setSelectedDevs] = useState([]);
 	const [selectedDate, setSelectedDate] = useState({ starting: null, ending: null });
+
 	useEffect(() => {
 		!developers.length && getDevelopers().then(res => setDevelopers([...res.data]));
-	}, [developers]);
-	useEffect(() => {
 		if (selectedDate.starting) {
 			setAvailableDevelopers([]);
 			const current = Date.now();
 			developers.forEach(developer => {
 				let devAvailable = checkDevAvailability(current, selectedDate, developer.hiringPeriods);
-				console.log(devAvailable);
 				devAvailable &&
 					setAvailableDevelopers(prev => {
 						let temp = [...prev];
@@ -50,6 +49,7 @@ function App() {
 					<Route path="all" element={<AllDevelopers developers={developers} procedure={procedure} setDevelopers={setDevelopers} />} />
 					<Route path="all/:devId" element={<EditDeveloper developers={developers} setDevelopers={setDevelopers} />} />
 				</Route>
+				<Route path="/success/:success" element={<SuccessPage to="/hiring-developers" />} />
 			</Routes>
 		</>
 	);

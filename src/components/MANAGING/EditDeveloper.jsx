@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import EditForm from '../../styled-components/EditForm';
 import { v4 as uuid4 } from 'uuid';
@@ -19,6 +19,7 @@ const EditDeveloper = ({ developers, setDevelopers }) => {
 	const [id, setId] = useState('');
 	const [hiringPeriods, setHiringPeriods] = useState([]);
 	const params = useParams();
+	const history = useNavigate();
 
 	useEffect(() => {
 		if (params.devId !== 'new') {
@@ -85,14 +86,14 @@ const EditDeveloper = ({ developers, setDevelopers }) => {
 		setDevelopers([]);
 		setHiringPeriods([]);
 		//set redirection to the new page depending on response
-		if (response.statusText === 'Created') {
-			console.log('Created');
-		} else if (response.statusText === 'OK') {
-			console.log('updated');
-		} else {
-			console.log('ups something went wrong');
-		}
 		e.target.reset();
+		if (response.statusText === 'Created') {
+			history('/success/created');
+		} else if (response.statusText === 'OK') {
+			history('/success/updated');
+		} else {
+			history('/success/false');
+		}
 	};
 
 	return (

@@ -58,12 +58,13 @@ const Developer = ({ devInfo, procedure, setSelectedDevs, selectedDevs, setDevel
 	const redirectToEditPage = () => {
 		history(`${devId}`);
 	};
+
 	const delDev = async () => {
 		const response = await deleteDeveloper(devInfo.id);
 		if (response.statusText === 'OK') {
-			console.log('deleted');
+			history('/success/deleted');
 		} else {
-			console.log('something went wrong');
+			history('/success/false');
 		}
 		setDevelopers([]);
 	};
